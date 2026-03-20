@@ -1,11 +1,14 @@
-import QtQuick
-import QtQuick.Layouts
-import QtQuick.Controls as QQC2
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15
 
 Rectangle {
     id: root
-    width: 640
-    height: 480
+
+    // ── Fill the entire screen ──
+    width: Screen.width
+    height: Screen.height
 
     property color kittyPink: "#FF69B4"
     property color deepRose: "#C71585"
@@ -57,7 +60,7 @@ Rectangle {
     // Login box
     Rectangle {
         anchors.centerIn: parent
-        width: 350
+        width: Math.min(350, parent.width * 0.85)
         height: 320
         radius: 16
         color: Qt.rgba(1, 0.94, 0.96, 0.92)
@@ -77,7 +80,7 @@ Rectangle {
                 color: deepRose
             }
 
-            QQC2.TextField {
+            TextField {
                 id: userField
                 Layout.fillWidth: true
                 font.pixelSize: 14
@@ -96,7 +99,7 @@ Rectangle {
                 color: deepRose
             }
 
-            QQC2.TextField {
+            TextField {
                 id: passField
                 Layout.fillWidth: true
                 font.pixelSize: 14
@@ -108,7 +111,7 @@ Rectangle {
             }
 
             // Login button
-            QQC2.Button {
+            Button {
                 id: loginBtn
                 Layout.fillWidth: true
                 Layout.preferredHeight: 40
@@ -153,7 +156,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: 20
 
-        QQC2.ComboBox {
+        ComboBox {
             id: sessionSelect
             Layout.preferredWidth: 180
             model: sessionModel
@@ -162,7 +165,7 @@ Rectangle {
             font.pixelSize: 11
         }
 
-        QQC2.Button {
+        Button {
             text: "Off"
             font.pixelSize: 11
             onClicked: sddm.powerOff()
@@ -182,7 +185,7 @@ Rectangle {
             }
         }
 
-        QQC2.Button {
+        Button {
             text: "Reboot"
             font.pixelSize: 11
             onClicked: sddm.reboot()
@@ -216,12 +219,12 @@ Rectangle {
 
     Connections {
         target: sddm
-        function onLoginFailed() {
+        onLoginFailed: {
             errorMsg.text = "Wrong password, try again"
             passField.text = ""
             passField.focus = true
         }
-        function onLoginSucceeded() {
+        onLoginSucceeded: {
             errorMsg.text = ""
         }
     }
