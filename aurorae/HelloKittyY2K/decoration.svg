@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+  <defs>
+    <!-- Active titlebar: deep-to-bright pink Oxygen-style gloss -->
+    <linearGradient id="titlebar-active" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF90C0"/>
+      <stop offset="40%" stop-color="#FF69B4"/>
+      <stop offset="41%" stop-color="#E85098"/>
+      <stop offset="100%" stop-color="#D04888"/>
+    </linearGradient>
+    <!-- Inactive titlebar: muted pink -->
+    <linearGradient id="titlebar-inactive" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8C8D4"/>
+      <stop offset="40%" stop-color="#D8B0C0"/>
+      <stop offset="41%" stop-color="#C8A0B0"/>
+      <stop offset="100%" stop-color="#C098A8"/>
+    </linearGradient>
+    <!-- Button normal -->
+    <radialGradient id="btn-rad" cx="50%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FFD0E0"/>
+      <stop offset="100%" stop-color="#FF90B0"/>
+    </radialGradient>
+    <!-- Button hover -->
+    <radialGradient id="btn-hover" cx="50%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FFE0F0"/>
+      <stop offset="100%" stop-color="#FFA0C0"/>
+    </radialGradient>
+    <!-- Button pressed -->
+    <radialGradient id="btn-pressed" cx="50%" cy="55%" r="55%">
+      <stop offset="0%" stop-color="#D05090"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </radialGradient>
+    <!-- Border gradient -->
+    <linearGradient id="border-active" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF80B8"/>
+      <stop offset="100%" stop-color="#C06090"/>
+    </linearGradient>
+    <linearGradient id="border-inactive" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D8B0C0"/>
+      <stop offset="100%" stop-color="#B89098"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ===== ACTIVE DECORATION ===== -->
+  <g id="decoration-active">
+    <!-- Outer border -->
+    <rect x="0" y="0" width="300" height="200" rx="10" ry="10"
+          fill="url(#border-active)" stroke="#A04070" stroke-width="1"/>
+    <!-- Inner area -->
+    <rect x="6" y="34" width="288" height="160" rx="2" ry="2"
+          fill="#FFF0F5"/>
+    <!-- Titlebar -->
+    <rect x="1" y="1" width="298" height="33" rx="9" ry="9"
+          fill="url(#titlebar-active)"/>
+    <!-- Titlebar gloss highlight -->
+    <rect x="2" y="2" width="296" height="15" rx="8" ry="8"
+          fill="#FFFFFF" opacity="0.25"/>
+
+    <!-- Close button -->
+    <circle cx="278" cy="17" r="9" fill="url(#btn-rad)" stroke="#C06080" stroke-width="0.8"/>
+    <line x1="274" y1="13" x2="282" y2="21" stroke="#A04060" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="282" y1="13" x2="274" y2="21" stroke="#A04060" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Maximize button -->
+    <circle cx="254" cy="17" r="9" fill="url(#btn-rad)" stroke="#C06080" stroke-width="0.8"/>
+    <rect x="249" y="12" width="10" height="10" rx="1" fill="none" stroke="#A04060" stroke-width="1.5"/>
+
+    <!-- Minimize button -->
+    <circle cx="230" cy="17" r="9" fill="url(#btn-rad)" stroke="#C06080" stroke-width="0.8"/>
+    <line x1="225" y1="20" x2="235" y2="20" stroke="#A04060" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Left border -->
+    <rect x="0" y="10" width="6" height="180" fill="url(#border-active)"/>
+    <!-- Right border -->
+    <rect x="294" y="10" width="6" height="180" fill="url(#border-active)"/>
+    <!-- Bottom border -->
+    <rect x="0" y="194" width="300" height="6" rx="0" ry="0" fill="url(#border-active)"/>
+    <!-- Bottom corners -->
+    <rect x="0" y="190" width="10" height="10" rx="10" ry="10" fill="url(#border-active)"/>
+    <rect x="290" y="190" width="10" height="10" rx="10" ry="10" fill="url(#border-active)"/>
+  </g>
+</svg>

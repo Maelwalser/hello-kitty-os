@@ -1,0 +1,17 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "",
+                "Name": "HelloKittyY2K"
+            }
+        ],
+        "Description": "A 2000s Hello Kitty themed Plasma desktop theme with glossy pink aesthetics",
+        "Id": "HelloKittyY2K",
+        "License": "GPL-3.0",
+        "Name": "Hello Kitty Y2K",
+        "Version": "1.0",
+        "Website": ""
+    },
+    "X-Plasma-API": "5.0"
+}

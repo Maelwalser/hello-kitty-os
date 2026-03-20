@@ -1,0 +1,11 @@
+[SddmGreeterTheme]
+Name=Hello Kitty Y2K
+Description=A 2000s Hello Kitty themed SDDM login screen
+Author=HelloKittyY2K Rice
+Type=sddm-theme
+Version=1.0
+Website=
+Screenshot=
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
