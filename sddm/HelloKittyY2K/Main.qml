@@ -1,14 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
 Rectangle {
     id: root
-
-    // ── Fill the entire screen ──
-    width: Screen.width
-    height: Screen.height
 
     property color kittyPink: "#FF69B4"
     property color deepRose: "#C71585"
@@ -72,7 +67,6 @@ Rectangle {
             width: parent.width - 60
             spacing: 12
 
-            // Username
             Text {
                 text: "Username"
                 font.pixelSize: 12
@@ -91,7 +85,6 @@ Rectangle {
                 KeyNavigation.tab: passField
             }
 
-            // Password
             Text {
                 text: "Password"
                 font.pixelSize: 12
@@ -110,7 +103,6 @@ Rectangle {
                 KeyNavigation.tab: userField
             }
 
-            // Login button
             Button {
                 id: loginBtn
                 Layout.fillWidth: true
@@ -137,7 +129,6 @@ Rectangle {
                 }
             }
 
-            // Error
             Text {
                 id: errorMsg
                 Layout.alignment: Qt.AlignHCenter
@@ -206,7 +197,6 @@ Rectangle {
         }
     }
 
-    // Footer
     Text {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 4
@@ -219,12 +209,12 @@ Rectangle {
 
     Connections {
         target: sddm
-        onLoginFailed: {
+        function onLoginFailed() {
             errorMsg.text = "Wrong password, try again"
             passField.text = ""
             passField.focus = true
         }
-        onLoginSucceeded: {
+        function onLoginSucceeded() {
             errorMsg.text = ""
         }
     }
