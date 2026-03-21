@@ -1,81 +1,113 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
-  <defs>
-    <!-- Active titlebar: deep-to-bright pink Oxygen-style gloss -->
-    <linearGradient id="titlebar-active" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FF90C0"/>
-      <stop offset="40%" stop-color="#FF69B4"/>
-      <stop offset="41%" stop-color="#E85098"/>
-      <stop offset="100%" stop-color="#D04888"/>
-    </linearGradient>
-    <!-- Inactive titlebar: muted pink -->
-    <linearGradient id="titlebar-inactive" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8C8D4"/>
-      <stop offset="40%" stop-color="#D8B0C0"/>
-      <stop offset="41%" stop-color="#C8A0B0"/>
-      <stop offset="100%" stop-color="#C098A8"/>
-    </linearGradient>
-    <!-- Button normal -->
-    <radialGradient id="btn-rad" cx="50%" cy="35%" r="55%">
-      <stop offset="0%" stop-color="#FFD0E0"/>
-      <stop offset="100%" stop-color="#FF90B0"/>
-    </radialGradient>
-    <!-- Button hover -->
-    <radialGradient id="btn-hover" cx="50%" cy="35%" r="55%">
-      <stop offset="0%" stop-color="#FFE0F0"/>
-      <stop offset="100%" stop-color="#FFA0C0"/>
-    </radialGradient>
-    <!-- Button pressed -->
-    <radialGradient id="btn-pressed" cx="50%" cy="55%" r="55%">
-      <stop offset="0%" stop-color="#D05090"/>
-      <stop offset="100%" stop-color="#FF69B4"/>
-    </radialGradient>
-    <!-- Border gradient -->
-    <linearGradient id="border-active" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FF80B8"/>
-      <stop offset="100%" stop-color="#C06090"/>
-    </linearGradient>
-    <linearGradient id="border-inactive" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#D8B0C0"/>
-      <stop offset="100%" stop-color="#B89098"/>
-    </linearGradient>
-  </defs>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   viewBox="0 0 200 200"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)">
 
-  <!-- ===== ACTIVE DECORATION ===== -->
-  <g id="decoration-active">
-    <!-- Outer border -->
-    <rect x="0" y="0" width="300" height="200" rx="10" ry="10"
-          fill="url(#border-active)" stroke="#A04070" stroke-width="1"/>
-    <!-- Inner area -->
-    <rect x="6" y="34" width="288" height="160" rx="2" ry="2"
-          fill="#FFF0F5"/>
-    <!-- Titlebar -->
-    <rect x="1" y="1" width="298" height="33" rx="9" ry="9"
-          fill="url(#titlebar-active)"/>
-    <!-- Titlebar gloss highlight -->
-    <rect x="2" y="2" width="296" height="15" rx="8" ry="8"
-          fill="#FFFFFF" opacity="0.25"/>
+  <!-- ACTIVE FRAME: 9-patch pieces
+       Sizes: corners=8x8 (except top corners are 8x46), borders=8 wide/tall, title=46 tall
+       
+       Sanity checks:
+       topleft h=46, top h=46, topright h=46  ✓ same height
+       topleft w=8, left w=8, bottomleft w=8  ✓ same width
+       topright w=8, right w=8, bottomright w=8 ✓ same width
+       bottomleft h=8, bottom h=8, bottomright h=8 ✓ same height
+  -->
 
-    <!-- Close button -->
-    <circle cx="278" cy="17" r="9" fill="url(#btn-rad)" stroke="#C06080" stroke-width="0.8"/>
-    <line x1="274" y1="13" x2="282" y2="21" stroke="#A04060" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="282" y1="13" x2="274" y2="21" stroke="#A04060" stroke-width="1.8" stroke-linecap="round"/>
-
-    <!-- Maximize button -->
-    <circle cx="254" cy="17" r="9" fill="url(#btn-rad)" stroke="#C06080" stroke-width="0.8"/>
-    <rect x="249" y="12" width="10" height="10" rx="1" fill="none" stroke="#A04060" stroke-width="1.5"/>
-
-    <!-- Minimize button -->
-    <circle cx="230" cy="17" r="9" fill="url(#btn-rad)" stroke="#C06080" stroke-width="0.8"/>
-    <line x1="225" y1="20" x2="235" y2="20" stroke="#A04060" stroke-width="1.8" stroke-linecap="round"/>
-
-    <!-- Left border -->
-    <rect x="0" y="10" width="6" height="180" fill="url(#border-active)"/>
-    <!-- Right border -->
-    <rect x="294" y="10" width="6" height="180" fill="url(#border-active)"/>
-    <!-- Bottom border -->
-    <rect x="0" y="194" width="300" height="6" rx="0" ry="0" fill="url(#border-active)"/>
-    <!-- Bottom corners -->
-    <rect x="0" y="190" width="10" height="10" rx="10" ry="10" fill="url(#border-active)"/>
-    <rect x="290" y="190" width="10" height="10" rx="10" ry="10" fill="url(#border-active)"/>
+  <!-- Active: top-left corner -->
+  <g id="decoration-topleft" inkscape:label="decoration-topleft">
+    <rect x="0" y="0" width="8" height="46" style="fill:#ff69b4;fill-opacity:1"/>
   </g>
+
+  <!-- Active: top (titlebar, stretched) -->
+  <g id="decoration-top" inkscape:label="decoration-top">
+    <rect x="10" y="0" width="60" height="46" style="fill:#ff69b4;fill-opacity:1"/>
+  </g>
+
+  <!-- Active: top-right corner -->
+  <g id="decoration-topright" inkscape:label="decoration-topright">
+    <rect x="72" y="0" width="8" height="46" style="fill:#ff69b4;fill-opacity:1"/>
+  </g>
+
+  <!-- Active: left border -->
+  <g id="decoration-left" inkscape:label="decoration-left">
+    <rect x="0" y="48" width="8" height="40" style="fill:#ff1493;fill-opacity:1"/>
+  </g>
+
+  <!-- Active: center (window background, stretched) -->
+  <g id="decoration-center" inkscape:label="decoration-center">
+    <rect x="10" y="48" width="60" height="40" style="fill:#fff0f5;fill-opacity:0.95"/>
+  </g>
+
+  <!-- Active: right border -->
+  <g id="decoration-right" inkscape:label="decoration-right">
+    <rect x="72" y="48" width="8" height="40" style="fill:#ff1493;fill-opacity:1"/>
+  </g>
+
+  <!-- Active: bottom-left corner -->
+  <g id="decoration-bottomleft" inkscape:label="decoration-bottomleft">
+    <rect x="0" y="90" width="8" height="8" style="fill:#ff1493;fill-opacity:1"/>
+  </g>
+
+  <!-- Active: bottom border -->
+  <g id="decoration-bottom" inkscape:label="decoration-bottom">
+    <rect x="10" y="90" width="60" height="8" style="fill:#ff1493;fill-opacity:1"/>
+  </g>
+
+  <!-- Active: bottom-right corner -->
+  <g id="decoration-bottomright" inkscape:label="decoration-bottomright">
+    <rect x="72" y="90" width="8" height="8" style="fill:#ff1493;fill-opacity:1"/>
+  </g>
+
+  <!-- INACTIVE FRAME (muted pink) -->
+
+  <g id="decoration-inactive-topleft" inkscape:label="decoration-inactive-topleft">
+    <rect x="0" y="110" width="8" height="46" style="fill:#d4a0b0;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-top" inkscape:label="decoration-inactive-top">
+    <rect x="10" y="110" width="60" height="46" style="fill:#d4a0b0;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-topright" inkscape:label="decoration-inactive-topright">
+    <rect x="72" y="110" width="8" height="46" style="fill:#d4a0b0;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-left" inkscape:label="decoration-inactive-left">
+    <rect x="0" y="158" width="8" height="20" style="fill:#c08898;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-center" inkscape:label="decoration-inactive-center">
+    <rect x="10" y="158" width="60" height="20" style="fill:#f5e8ec;fill-opacity:0.9"/>
+  </g>
+
+  <g id="decoration-inactive-right" inkscape:label="decoration-inactive-right">
+    <rect x="72" y="158" width="8" height="20" style="fill:#c08898;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-bottomleft" inkscape:label="decoration-inactive-bottomleft">
+    <rect x="0" y="180" width="8" height="8" style="fill:#c08898;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-bottom" inkscape:label="decoration-inactive-bottom">
+    <rect x="10" y="180" width="60" height="8" style="fill:#c08898;fill-opacity:1"/>
+  </g>
+
+  <g id="decoration-inactive-bottomright" inkscape:label="decoration-inactive-bottomright">
+    <rect x="72" y="180" width="8" height="8" style="fill:#c08898;fill-opacity:1"/>
+  </g>
+
+  <!-- Hint: stretch borders instead of tiling them -->
+  <rect id="hint-stretch-borders" x="0" y="0" width="1" height="1" style="fill:none"/>
+
 </svg>
