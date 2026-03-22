@@ -1,17 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+<svg xmlns="http://www.w3.org/2000/svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="130" height="26" viewBox="0 0 130 26" version="1.1">
+  <defs>
+    <linearGradient id="btnFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffb8d0"/><stop offset="100%" stop-color="#ff90b8"/>
+    </linearGradient>
+    <linearGradient id="btnFaceHover" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffc8dd"/><stop offset="100%" stop-color="#ffa0c8"/>
+    </linearGradient>
+    <linearGradient id="btnFacePressed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e880a8"/><stop offset="100%" stop-color="#ff90b8"/>
+    </linearGradient>
+    <linearGradient id="btnFaceInactive" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8d0dc"/><stop offset="100%" stop-color="#dcc0d0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ══ NORMAL ══ -->
   <g id="center" inkscape:label="center">
-    <circle cx="13" cy="13" r="11" style="fill:#44bbff;fill-opacity:1;stroke:#ffffff;stroke-width:1.5"/>
+    <rect x="1" y="1" width="24" height="24" rx="1" fill="#880040"/>
+    <rect x="1" y="1" width="23" height="23" rx="1" fill="#ffdcec"/>
+    <rect x="2" y="2" width="23" height="23" rx="1" fill="#aa4070"/>
+    <rect x="2" y="2" width="22" height="22" rx="1" fill="#ffe8f0"/>
+    <rect x="3" y="3" width="22" height="22" rx="1" fill="#cc6090"/>
+    <rect x="3" y="3" width="20" height="20" rx="1" fill="url(#btnFace)"/>
+    <!-- Overlapping windows glyph -->
+    <!-- Back window -->
+    <rect x="10" y="6" width="9" height="9" fill="none" stroke="#880040" stroke-width="1.5"/>
+    <rect x="10" y="6" width="9" height="2.5" fill="#880040"/>
+    <!-- Front window -->
+    <rect x="7" y="9" width="9" height="9" fill="url(#btnFace)" stroke="#880040" stroke-width="1.5"/>
+    <rect x="7" y="9" width="9" height="2.5" fill="#880040"/>
   </g>
+
+  <!-- ══ HOVER ══ -->
   <g id="hover-center" inkscape:label="hover-center">
-    <circle cx="45" cy="13" r="12" style="fill:#0099ff;fill-opacity:1;stroke:#ffffff;stroke-width:2"/>
+    <rect x="33" y="1" width="24" height="24" rx="1" fill="#990050"/>
+    <rect x="33" y="1" width="23" height="23" rx="1" fill="#ffe4f2"/>
+    <rect x="34" y="2" width="23" height="23" rx="1" fill="#bb5080"/>
+    <rect x="34" y="2" width="22" height="22" rx="1" fill="#fff0f5"/>
+    <rect x="35" y="3" width="22" height="22" rx="1" fill="#dd70a0"/>
+    <rect x="35" y="3" width="20" height="20" rx="1" fill="url(#btnFaceHover)"/>
+    <rect x="42" y="6" width="9" height="9" fill="none" stroke="#990050" stroke-width="1.5"/>
+    <rect x="42" y="6" width="9" height="2.5" fill="#990050"/>
+    <rect x="39" y="9" width="9" height="9" fill="url(#btnFaceHover)" stroke="#990050" stroke-width="1.5"/>
+    <rect x="39" y="9" width="9" height="2.5" fill="#990050"/>
   </g>
+
+  <!-- ══ PRESSED ══ -->
   <g id="pressed-center" inkscape:label="pressed-center">
-    <circle cx="77" cy="13" r="10" style="fill:#0055aa;fill-opacity:1;stroke:#ffb6c1;stroke-width:1.5"/>
+    <rect x="65" y="1" width="24" height="24" rx="1" fill="#880040"/>
+    <rect x="65" y="1" width="23" height="23" rx="1" fill="#aa4070"/>
+    <rect x="66" y="2" width="23" height="23" rx="1" fill="#ffdcec"/>
+    <rect x="66" y="2" width="22" height="22" rx="1" fill="#cc6090"/>
+    <rect x="67" y="3" width="22" height="22" rx="1" fill="#ffe8f0"/>
+    <rect x="67" y="3" width="20" height="20" rx="1" fill="url(#btnFacePressed)"/>
+    <rect x="75" y="7" width="9" height="9" fill="none" stroke="#880040" stroke-width="1.5"/>
+    <rect x="75" y="7" width="9" height="2.5" fill="#880040"/>
+    <rect x="72" y="10" width="9" height="9" fill="url(#btnFacePressed)" stroke="#880040" stroke-width="1.5"/>
+    <rect x="72" y="10" width="9" height="2.5" fill="#880040"/>
   </g>
+
+  <!-- ══ INACTIVE ══ -->
   <g id="deactivated-center" inkscape:label="deactivated-center">
-    <circle cx="109" cy="13" r="10" style="fill:#a0b8d4;fill-opacity:1;stroke:#c8d8e8;stroke-width:1"/>
+    <rect x="97" y="1" width="24" height="24" rx="1" fill="#a08090"/>
+    <rect x="97" y="1" width="23" height="23" rx="1" fill="#f0e0e8"/>
+    <rect x="98" y="2" width="23" height="23" rx="1" fill="#b898a8"/>
+    <rect x="98" y="2" width="22" height="22" rx="1" fill="#f0e8ec"/>
+    <rect x="99" y="3" width="22" height="22" rx="1" fill="#c8b0bc"/>
+    <rect x="99" y="3" width="20" height="20" rx="1" fill="url(#btnFaceInactive)"/>
+    <rect x="106" y="6" width="9" height="9" fill="none" stroke="#a08090" stroke-width="1.5"/>
+    <rect x="106" y="6" width="9" height="2.5" fill="#a08090"/>
+    <rect x="103" y="9" width="9" height="9" fill="url(#btnFaceInactive)" stroke="#a08090" stroke-width="1.5"/>
+    <rect x="103" y="9" width="9" height="2.5" fill="#a08090"/>
   </g>
 </svg>

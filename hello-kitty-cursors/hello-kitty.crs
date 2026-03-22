@@ -1,0 +1,45 @@
+﻿[Arrow]
+Path=Hello Kitty normal select.cur
+
+[Help]
+Path=Hello Kitty help select.cur
+
+[AppStarting]
+Path=Hello Kitty working in background.ani
+
+[Wait]
+Path=Hello Kitty busy.ani
+
+[Crosshair]
+Path=Hello Kitty precision select.cur
+
+[IBeam]
+Path=Hello Kitty text select.cur
+
+[NWPen]
+Path=Hello Kitty handwriting.cur
+
+[No]
+Path=Hello Kitty unavailable.cur
+
+[SizeNS]
+Path=Hello Kitty vertical resize.cur
+
+[SizeWE]
+Path=Hello Kitty horizontal resize.cur
+
+[SizeNWSE]
+Path=Hello Kitty diagonal resize 1.cur
+
+[SizeNESW]
+Path=Hello Kitty diagonal resize 2.cur
+
+[SizeAll]
+Path=Hello Kitty move.cur
+
+[UpArrow]
+Path=Hello Kitty alternate select.cur
+
+[Hand]
+Path=Hello Kitty link select.ani
+

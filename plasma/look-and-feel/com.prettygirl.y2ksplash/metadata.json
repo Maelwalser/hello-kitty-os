@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Description": "Y2K Animated Splash Screen",
+        "Icon": "preferences-desktop-theme-global",
+        "Id": "com.prettygirl.y2ksplash",
+        "Name": "Hello Kitty Y2K Splash",
+        "ServiceTypes": [
+            "Plasma/LookAndFeel"
+        ],
+        "Version": "1.0"
+    }
+}
