@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1100">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1400">
   <defs>
     <!-- ===== GLOSSY Y2K GRADIENTS ===== -->
+
     <!-- Button normal: glossy pink bevel -->
     <linearGradient id="btn-normal" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFD6E8"/>
@@ -30,26 +31,35 @@
       <stop offset="50%" stop-color="#FF69B4"/>
       <stop offset="100%" stop-color="#FF80C0"/>
     </linearGradient>
+    <!-- Button disabled -->
+    <linearGradient id="btn-disabled" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0D8E0"/>
+      <stop offset="50%" stop-color="#E8CCD4"/>
+      <stop offset="100%" stop-color="#E0C4CC"/>
+    </linearGradient>
+
     <!-- Line edit / input -->
-    <linearGradient id="lineedit-normal" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="lineedit-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#F8E8EE"/>
       <stop offset="5%" stop-color="#FFFFFF"/>
       <stop offset="100%" stop-color="#FFFFFF"/>
     </linearGradient>
+
     <!-- Tab active -->
-    <linearGradient id="tab-active" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="tab-active-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFE4EE"/>
       <stop offset="30%" stop-color="#FFF0F5"/>
       <stop offset="100%" stop-color="#FFFFFF"/>
     </linearGradient>
     <!-- Tab inactive -->
-    <linearGradient id="tab-inactive" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="tab-inactive-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#F0C0D0"/>
       <stop offset="50%" stop-color="#E8B0C0"/>
       <stop offset="100%" stop-color="#E0A8B8"/>
     </linearGradient>
+
     <!-- Scrollbar groove -->
-    <linearGradient id="groove" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="groove-grad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#F0D0DD"/>
       <stop offset="50%" stop-color="#F5E0E8"/>
       <stop offset="100%" stop-color="#F0D0DD"/>
@@ -62,6 +72,15 @@
       <stop offset="80%" stop-color="#FFC8D8"/>
       <stop offset="100%" stop-color="#FFB0C5"/>
     </linearGradient>
+    <!-- Scrollbar slider focused -->
+    <linearGradient id="slider-focus-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFA0B8"/>
+      <stop offset="20%" stop-color="#FFB8CC"/>
+      <stop offset="50%" stop-color="#FFC8D8"/>
+      <stop offset="80%" stop-color="#FFB8CC"/>
+      <stop offset="100%" stop-color="#FFA0B8"/>
+    </linearGradient>
+
     <!-- Progress bar -->
     <linearGradient id="progress-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FF90C8"/>
@@ -69,6 +88,7 @@
       <stop offset="60%" stop-color="#FF50A0"/>
       <stop offset="100%" stop-color="#FF69B4"/>
     </linearGradient>
+
     <!-- Menu bg -->
     <linearGradient id="menu-bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFF5F8"/>
@@ -80,170 +100,891 @@
       <stop offset="50%" stop-color="#FF69B4"/>
       <stop offset="100%" stop-color="#FF50A0"/>
     </linearGradient>
+
     <!-- Header -->
     <linearGradient id="header-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFD0E0"/>
       <stop offset="100%" stop-color="#FFC0D4"/>
     </linearGradient>
+
     <!-- Window bg -->
     <linearGradient id="window-bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFF0F5"/>
       <stop offset="100%" stop-color="#FFE8F0"/>
     </linearGradient>
+
     <!-- Tooltip -->
     <linearGradient id="tooltip-bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFF8FA"/>
       <stop offset="100%" stop-color="#FFE8F0"/>
     </linearGradient>
+
     <!-- Toolbar -->
     <linearGradient id="toolbar-grad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFE0EC"/>
       <stop offset="100%" stop-color="#FFD0E0"/>
     </linearGradient>
+
     <!-- Group box -->
     <linearGradient id="group-bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFF5F8"/>
       <stop offset="100%" stop-color="#FFECF2"/>
     </linearGradient>
+
+    <!-- Combo normal -->
+    <linearGradient id="combo-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD6E8"/>
+      <stop offset="15%" stop-color="#FFB6C1"/>
+      <stop offset="50%" stop-color="#FF9FB5"/>
+      <stop offset="51%" stop-color="#FF8DA8"/>
+      <stop offset="100%" stop-color="#FFA0B8"/>
+    </linearGradient>
   </defs>
 
-  <!-- ==================== BUTTON ==================== -->
-  <!-- button-normal -->
-  <rect id="button-normal" x="0" y="0" width="80" height="32" rx="6" ry="6"
-        fill="url(#btn-normal)" stroke="#E090A8" stroke-width="1"/>
-  <!-- button-normal, top highlight -->
-  <rect x="1" y="1" width="78" height="15" rx="5" ry="5"
+
+  <!-- ==================================================================
+       BUTTON (interior.element=button, frame.element=button)
+       States: normal, focused, pressed, toggled, disabled
+       Kvantum looks for: button-normal, button-focused, button-pressed,
+       button-toggled, button-disabled (for interiors)
+       ================================================================== -->
+
+  <!-- button-normal (interior) -->
+  <rect id="button-normal" x="0" y="0" width="80" height="32" rx="6"
+        fill="url(#btn-normal)"/>
+  <!-- button-normal gloss overlay -->
+  <rect x="1" y="1" width="78" height="15" rx="5"
         fill="#FFFFFF" opacity="0.25"/>
 
+  <!-- button-normal-top (frame piece) -->
+  <rect id="button-normal-top" x="0" y="0" width="80" height="4"
+        fill="#E090A8" opacity="0.6"/>
+  <rect id="button-normal-bottom" x="0" y="28" width="80" height="4"
+        fill="#D08098" opacity="0.7"/>
+  <rect id="button-normal-left" x="0" y="0" width="4" height="32"
+        fill="#E090A8" opacity="0.6"/>
+  <rect id="button-normal-right" x="76" y="0" width="4" height="32"
+        fill="#D08098" opacity="0.6"/>
+  <rect id="button-normal-topleft" x="0" y="0" width="4" height="4" rx="4"
+        fill="#E8A0B0"/>
+  <rect id="button-normal-topright" x="76" y="0" width="4" height="4" rx="4"
+        fill="#E098A8"/>
+  <rect id="button-normal-bottomleft" x="0" y="28" width="4" height="4" rx="4"
+        fill="#D88898"/>
+  <rect id="button-normal-bottomright" x="76" y="28" width="4" height="4" rx="4"
+        fill="#D08090"/>
+
   <!-- button-focused -->
-  <rect id="button-focused" x="100" y="0" width="80" height="32" rx="6" ry="6"
-        fill="url(#btn-focus)" stroke="#FF69B4" stroke-width="1.5"/>
-  <rect x="101" y="1" width="78" height="15" rx="5" ry="5"
+  <rect id="button-focused" x="100" y="0" width="80" height="32" rx="6"
+        fill="url(#btn-focus)"/>
+  <rect x="101" y="1" width="78" height="15" rx="5"
         fill="#FFFFFF" opacity="0.3"/>
+  <rect id="button-focused-top" x="100" y="0" width="80" height="4"
+        fill="#FF69B4" opacity="0.8"/>
+  <rect id="button-focused-bottom" x="100" y="28" width="80" height="4"
+        fill="#FF69B4" opacity="0.7"/>
+  <rect id="button-focused-left" x="100" y="0" width="4" height="32"
+        fill="#FF69B4" opacity="0.8"/>
+  <rect id="button-focused-right" x="176" y="0" width="4" height="32"
+        fill="#FF69B4" opacity="0.7"/>
+  <rect id="button-focused-topleft" x="100" y="0" width="4" height="4" rx="4"
+        fill="#FF69B4"/>
+  <rect id="button-focused-topright" x="176" y="0" width="4" height="4" rx="4"
+        fill="#FF69B4"/>
+  <rect id="button-focused-bottomleft" x="100" y="28" width="4" height="4" rx="4"
+        fill="#FF69B4"/>
+  <rect id="button-focused-bottomright" x="176" y="28" width="4" height="4" rx="4"
+        fill="#FF69B4"/>
 
   <!-- button-pressed -->
-  <rect id="button-pressed" x="200" y="0" width="80" height="32" rx="6" ry="6"
-        fill="url(#btn-press)" stroke="#C05088" stroke-width="1"/>
-  <rect x="201" y="2" width="78" height="14" rx="5" ry="5"
+  <rect id="button-pressed" x="200" y="0" width="80" height="32" rx="6"
+        fill="url(#btn-press)"/>
+  <rect x="201" y="2" width="78" height="14" rx="5"
         fill="#000000" opacity="0.08"/>
+  <rect id="button-pressed-top" x="200" y="0" width="80" height="4"
+        fill="#C05088" opacity="0.8"/>
+  <rect id="button-pressed-bottom" x="200" y="28" width="80" height="4"
+        fill="#D06098"/>
+  <rect id="button-pressed-left" x="200" y="0" width="4" height="32"
+        fill="#C05088" opacity="0.8"/>
+  <rect id="button-pressed-right" x="276" y="0" width="4" height="32"
+        fill="#C05088" opacity="0.8"/>
+  <rect id="button-pressed-topleft" x="200" y="0" width="4" height="4" rx="4"
+        fill="#C05088"/>
+  <rect id="button-pressed-topright" x="276" y="0" width="4" height="4" rx="4"
+        fill="#C05088"/>
+  <rect id="button-pressed-bottomleft" x="200" y="28" width="4" height="4" rx="4"
+        fill="#C05088"/>
+  <rect id="button-pressed-bottomright" x="276" y="28" width="4" height="4" rx="4"
+        fill="#C05088"/>
 
   <!-- button-toggled -->
-  <rect id="button-toggled" x="300" y="0" width="80" height="32" rx="6" ry="6"
-        fill="url(#btn-toggle)" stroke="#C05088" stroke-width="1"/>
+  <rect id="button-toggled" x="300" y="0" width="80" height="32" rx="6"
+        fill="url(#btn-toggle)"/>
+  <rect id="button-toggled-top" x="300" y="0" width="80" height="4"
+        fill="#C05088"/>
+  <rect id="button-toggled-bottom" x="300" y="28" width="80" height="4"
+        fill="#C05088"/>
+  <rect id="button-toggled-left" x="300" y="0" width="4" height="32"
+        fill="#C05088"/>
+  <rect id="button-toggled-right" x="376" y="0" width="4" height="32"
+        fill="#C05088"/>
+  <rect id="button-toggled-topleft" x="300" y="0" width="4" height="4" rx="4"
+        fill="#C05088"/>
+  <rect id="button-toggled-topright" x="376" y="0" width="4" height="4" rx="4"
+        fill="#C05088"/>
+  <rect id="button-toggled-bottomleft" x="300" y="28" width="4" height="4" rx="4"
+        fill="#C05088"/>
+  <rect id="button-toggled-bottomright" x="376" y="28" width="4" height="4" rx="4"
+        fill="#C05088"/>
 
-  <!-- ==================== LINE EDIT ==================== -->
-  <rect id="lineedit-normal" x="0" y="50" width="200" height="30" rx="5" ry="5"
-        fill="url(#lineedit-normal)" stroke="#E0A8B8" stroke-width="1"/>
-  <rect id="lineedit-focused" x="220" y="50" width="200" height="30" rx="5" ry="5"
-        fill="#FFFFFF" stroke="#FF69B4" stroke-width="1.5"/>
+  <!-- button-disabled -->
+  <rect id="button-disabled" x="400" y="0" width="80" height="32" rx="6"
+        fill="url(#btn-disabled)"/>
+  <rect id="button-disabled-top" x="400" y="0" width="80" height="4"
+        fill="#D8C0C8" opacity="0.5"/>
+  <rect id="button-disabled-bottom" x="400" y="28" width="80" height="4"
+        fill="#D8C0C8" opacity="0.5"/>
+  <rect id="button-disabled-left" x="400" y="0" width="4" height="32"
+        fill="#D8C0C8" opacity="0.5"/>
+  <rect id="button-disabled-right" x="476" y="0" width="4" height="32"
+        fill="#D8C0C8" opacity="0.5"/>
+  <rect id="button-disabled-topleft" x="400" y="0" width="4" height="4" rx="4"
+        fill="#D8C0C8"/>
+  <rect id="button-disabled-topright" x="476" y="0" width="4" height="4" rx="4"
+        fill="#D8C0C8"/>
+  <rect id="button-disabled-bottomleft" x="400" y="28" width="4" height="4" rx="4"
+        fill="#D8C0C8"/>
+  <rect id="button-disabled-bottomright" x="476" y="28" width="4" height="4" rx="4"
+        fill="#D8C0C8"/>
 
-  <!-- ==================== COMBO ==================== -->
-  <rect id="combo-normal" x="0" y="100" width="150" height="30" rx="5" ry="5"
-        fill="url(#btn-normal)" stroke="#E090A8" stroke-width="1"/>
-  <rect x="1" y="101" width="148" height="14" rx="4" ry="4"
+
+  <!-- ==================================================================
+       LINE EDIT (interior.element=lineedit, frame.element=lineedit)
+       ================================================================== -->
+
+  <rect id="lineedit-normal" x="0" y="60" width="200" height="30" rx="5"
+        fill="url(#lineedit-grad)"/>
+  <rect id="lineedit-normal-top" x="0" y="60" width="200" height="3"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-bottom" x="0" y="87" width="200" height="3"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-left" x="0" y="60" width="4" height="30"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-right" x="196" y="60" width="4" height="30"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-topleft" x="0" y="60" width="4" height="3" rx="3"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-topright" x="196" y="60" width="4" height="3" rx="3"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-bottomleft" x="0" y="87" width="4" height="3" rx="3"
+        fill="#E0A8B8"/>
+  <rect id="lineedit-normal-bottomright" x="196" y="87" width="4" height="3" rx="3"
+        fill="#E0A8B8"/>
+
+  <rect id="lineedit-focused" x="220" y="60" width="200" height="30" rx="5"
+        fill="#FFFFFF"/>
+  <rect id="lineedit-focused-top" x="220" y="60" width="200" height="3"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-bottom" x="220" y="87" width="200" height="3"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-left" x="220" y="60" width="4" height="30"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-right" x="416" y="60" width="4" height="30"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-topleft" x="220" y="60" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-topright" x="416" y="60" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-bottomleft" x="220" y="87" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="lineedit-focused-bottomright" x="416" y="87" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+
+
+  <!-- ==================================================================
+       COMBO BOX (interior.element=combo, frame.element=combo)
+       ================================================================== -->
+
+  <rect id="combo-normal" x="0" y="110" width="150" height="30" rx="5"
+        fill="url(#combo-grad)"/>
+  <rect x="1" y="111" width="148" height="14" rx="4"
         fill="#FFFFFF" opacity="0.2"/>
+  <rect id="combo-normal-top" x="0" y="110" width="150" height="3"
+        fill="#E090A8"/>
+  <rect id="combo-normal-bottom" x="0" y="137" width="150" height="3"
+        fill="#E090A8"/>
+  <rect id="combo-normal-left" x="0" y="110" width="4" height="30"
+        fill="#E090A8"/>
+  <rect id="combo-normal-right" x="146" y="110" width="4" height="30"
+        fill="#E090A8"/>
+  <rect id="combo-normal-topleft" x="0" y="110" width="4" height="3" rx="3"
+        fill="#E090A8"/>
+  <rect id="combo-normal-topright" x="146" y="110" width="4" height="3" rx="3"
+        fill="#E090A8"/>
+  <rect id="combo-normal-bottomleft" x="0" y="137" width="4" height="3" rx="3"
+        fill="#E090A8"/>
+  <rect id="combo-normal-bottomright" x="146" y="137" width="4" height="3" rx="3"
+        fill="#E090A8"/>
 
-  <!-- ==================== TABS ==================== -->
-  <rect id="tab-active-top" x="0" y="150" width="100" height="30" rx="6" ry="6"
-        fill="url(#tab-active)" stroke="#E0A8B8" stroke-width="1"/>
-  <rect id="tab-inactive-top" x="120" y="150" width="100" height="30" rx="6" ry="6"
-        fill="url(#tab-inactive)" stroke="#D0A0B0" stroke-width="1"/>
-  <rect id="tabframe" x="0" y="180" width="240" height="80" rx="4" ry="4"
-        fill="#FFF0F5" stroke="#E0A8B8" stroke-width="1"/>
+  <rect id="combo-focused" x="170" y="110" width="150" height="30" rx="5"
+        fill="url(#btn-focus)"/>
+  <rect id="combo-focused-top" x="170" y="110" width="150" height="3"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-bottom" x="170" y="137" width="150" height="3"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-left" x="170" y="110" width="4" height="30"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-right" x="316" y="110" width="4" height="30"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-topleft" x="170" y="110" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-topright" x="316" y="110" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-bottomleft" x="170" y="137" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="combo-focused-bottomright" x="316" y="137" width="4" height="3" rx="3"
+        fill="#FF69B4"/>
 
-  <!-- ==================== SCROLLBAR ==================== -->
-  <!-- groove -->
-  <rect id="scrollbargroove" x="0" y="280" width="14" height="120" rx="7" ry="7"
-        fill="url(#groove)" stroke="#E0C0CC" stroke-width="0.5"/>
-  <!-- slider -->
-  <rect id="scrollbar-normal" x="30" y="280" width="14" height="50" rx="7" ry="7"
-        fill="url(#slider-grad)" stroke="#D0A0B8" stroke-width="1"/>
-  <!-- grip marks on slider -->
-  <line x1="34" y1="300" x2="40" y2="300" stroke="#D0A0B8" stroke-width="1"/>
-  <line x1="34" y1="304" x2="40" y2="304" stroke="#D0A0B8" stroke-width="1"/>
-  <line x1="34" y1="308" x2="40" y2="308" stroke="#D0A0B8" stroke-width="1"/>
+  <rect id="combo-pressed" x="340" y="110" width="150" height="30" rx="5"
+        fill="url(#btn-press)"/>
+  <rect id="combo-pressed-top" x="340" y="110" width="150" height="3"
+        fill="#C05088"/>
+  <rect id="combo-pressed-bottom" x="340" y="137" width="150" height="3"
+        fill="#C05088"/>
+  <rect id="combo-pressed-left" x="340" y="110" width="4" height="30"
+        fill="#C05088"/>
+  <rect id="combo-pressed-right" x="486" y="110" width="4" height="30"
+        fill="#C05088"/>
+  <rect id="combo-pressed-topleft" x="340" y="110" width="4" height="3" rx="3"
+        fill="#C05088"/>
+  <rect id="combo-pressed-topright" x="486" y="110" width="4" height="3" rx="3"
+        fill="#C05088"/>
+  <rect id="combo-pressed-bottomleft" x="340" y="137" width="4" height="3" rx="3"
+        fill="#C05088"/>
+  <rect id="combo-pressed-bottomright" x="486" y="137" width="4" height="3" rx="3"
+        fill="#C05088"/>
 
-  <!-- ==================== PROGRESS BAR ==================== -->
-  <rect id="progress-groove" x="0" y="420" width="300" height="20" rx="10" ry="10"
-        fill="#F0D0DD" stroke="#E0B0C0" stroke-width="1"/>
-  <rect id="progress-pattern" x="0" y="450" width="200" height="20" rx="10" ry="10"
-        fill="url(#progress-grad)" stroke="#D06090" stroke-width="1"/>
-  <!-- Gloss on progress -->
-  <rect x="1" y="451" width="198" height="9" rx="9" ry="9"
-        fill="#FFFFFF" opacity="0.3"/>
 
-  <!-- ==================== MENU ==================== -->
-  <rect id="menu" x="0" y="490" width="200" height="150" rx="6" ry="6"
-        fill="url(#menu-bg)" stroke="#E0A8B8" stroke-width="1"/>
-  <rect id="menuitem-focus" x="0" y="660" width="200" height="28" rx="4" ry="4"
+  <!-- ==================================================================
+       MENU (interior.element=menu, frame.element=menu)
+       THIS IS THE KEY FIX FOR THE DARK GREY CONTEXT MENU
+       ================================================================== -->
+
+  <!-- menu-normal = the popup background -->
+  <rect id="menu-normal" x="0" y="160" width="200" height="150" rx="6"
+        fill="url(#menu-bg)"/>
+  <rect id="menu-normal-top" x="0" y="160" width="200" height="4" rx="2"
+        fill="#E8B0C4"/>
+  <rect id="menu-normal-bottom" x="0" y="306" width="200" height="4" rx="2"
+        fill="#E0A8B8"/>
+  <rect id="menu-normal-left" x="0" y="160" width="4" height="150"
+        fill="#E8B0C4"/>
+  <rect id="menu-normal-right" x="196" y="160" width="4" height="150"
+        fill="#E0A8B8"/>
+  <rect id="menu-normal-topleft" x="0" y="160" width="4" height="4" rx="4"
+        fill="#E8B0C4"/>
+  <rect id="menu-normal-topright" x="196" y="160" width="4" height="4" rx="4"
+        fill="#E8B0C4"/>
+  <rect id="menu-normal-bottomleft" x="0" y="306" width="4" height="4" rx="4"
+        fill="#E0A8B8"/>
+  <rect id="menu-normal-bottomright" x="196" y="306" width="4" height="4" rx="4"
+        fill="#E0A8B8"/>
+
+
+  <!-- ==================================================================
+       MENU ITEM (interior.element=menuitem, frame.element=menuitem)
+       ================================================================== -->
+
+  <!-- menuitem-normal: transparent (the menu bg shows through) -->
+  <rect id="menuitem-normal" x="0" y="330" width="200" height="28"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-top" x="0" y="330" width="200" height="2"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-bottom" x="0" y="356" width="200" height="2"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-left" x="0" y="330" width="4" height="28"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-right" x="196" y="330" width="4" height="28"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-topleft" x="0" y="330" width="4" height="2"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-topright" x="196" y="330" width="4" height="2"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-bottomleft" x="0" y="356" width="4" height="2"
+        fill="#FFF5F8" opacity="0.01"/>
+  <rect id="menuitem-normal-bottomright" x="196" y="356" width="4" height="2"
+        fill="#FFF5F8" opacity="0.01"/>
+
+  <!-- menuitem-focused: glossy hot pink highlight -->
+  <rect id="menuitem-focused" x="0" y="370" width="200" height="28" rx="4"
         fill="url(#menu-hover)"/>
-  <rect x="1" y="661" width="198" height="13" rx="3" ry="3"
+  <rect x="1" y="371" width="198" height="13" rx="3"
         fill="#FFFFFF" opacity="0.15"/>
+  <rect id="menuitem-focused-top" x="0" y="370" width="200" height="2"
+        fill="#FF80C0" opacity="0.5"/>
+  <rect id="menuitem-focused-bottom" x="0" y="396" width="200" height="2"
+        fill="#FF50A0" opacity="0.5"/>
+  <rect id="menuitem-focused-left" x="0" y="370" width="4" height="28"
+        fill="#FF69B4" opacity="0.5"/>
+  <rect id="menuitem-focused-right" x="196" y="370" width="4" height="28"
+        fill="#FF69B4" opacity="0.5"/>
+  <rect id="menuitem-focused-topleft" x="0" y="370" width="4" height="2" rx="2"
+        fill="#FF80C0"/>
+  <rect id="menuitem-focused-topright" x="196" y="370" width="4" height="2" rx="2"
+        fill="#FF80C0"/>
+  <rect id="menuitem-focused-bottomleft" x="0" y="396" width="4" height="2" rx="2"
+        fill="#FF50A0"/>
+  <rect id="menuitem-focused-bottomright" x="196" y="396" width="4" height="2" rx="2"
+        fill="#FF50A0"/>
 
-  <!-- ==================== MENUBAR ==================== -->
-  <rect id="menubar" x="0" y="710" width="400" height="28"
-        fill="url(#toolbar-grad)" stroke="#E0B0C4" stroke-width="0.5"/>
-  <rect id="menubaritem-focus" x="0" y="750" width="80" height="24" rx="4" ry="4"
-        fill="#FFD0E0" stroke="#FF69B4" stroke-width="0.5"/>
 
-  <!-- ==================== HEADER ==================== -->
-  <rect id="header-section" x="0" y="790" width="150" height="28"
-        fill="url(#header-grad)" stroke="#D0A0B8" stroke-width="1"/>
+  <!-- ==================================================================
+       MENUBAR (interior.element=menubar, frame.element=menubar)
+       ================================================================== -->
 
-  <!-- ==================== TOOLTIP ==================== -->
-  <rect id="tooltip" x="0" y="830" width="180" height="40" rx="6" ry="6"
-        fill="url(#tooltip-bg)" stroke="#FFB6C1" stroke-width="1"/>
+  <rect id="menubar-normal" x="0" y="420" width="400" height="28"
+        fill="url(#toolbar-grad)"/>
+  <rect id="menubar-normal-top" x="0" y="420" width="400" height="1"
+        fill="#E0B0C4" opacity="0.3"/>
+  <rect id="menubar-normal-bottom" x="0" y="447" width="400" height="3"
+        fill="#E0B0C4" opacity="0.5"/>
+  <rect id="menubar-normal-left" x="0" y="420" width="1" height="28"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="menubar-normal-right" x="399" y="420" width="1" height="28"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="menubar-normal-topleft" x="0" y="420" width="1" height="1"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="menubar-normal-topright" x="399" y="420" width="1" height="1"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="menubar-normal-bottomleft" x="0" y="447" width="1" height="3"
+        fill="#E0B0C4"/>
+  <rect id="menubar-normal-bottomright" x="399" y="447" width="1" height="3"
+        fill="#E0B0C4"/>
 
-  <!-- ==================== GROUP ==================== -->
-  <rect id="group" x="0" y="890" width="250" height="80" rx="8" ry="8"
-        fill="url(#group-bg)" stroke="#E0B0C4" stroke-width="1"/>
+  <rect id="menubar-focused" x="0" y="460" width="400" height="28"
+        fill="url(#toolbar-grad)"/>
+  <rect id="menubar-focused-top" x="0" y="460" width="400" height="1"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="menubar-focused-bottom" x="0" y="487" width="400" height="3"
+        fill="#FF69B4" opacity="0.5"/>
+  <rect id="menubar-focused-left" x="0" y="460" width="1" height="28"
+        fill="#FF69B4" opacity="0"/>
+  <rect id="menubar-focused-right" x="399" y="460" width="1" height="28"
+        fill="#FF69B4" opacity="0"/>
+  <rect id="menubar-focused-topleft" x="0" y="460" width="1" height="1"
+        fill="#FF69B4" opacity="0"/>
+  <rect id="menubar-focused-topright" x="399" y="460" width="1" height="1"
+        fill="#FF69B4" opacity="0"/>
+  <rect id="menubar-focused-bottomleft" x="0" y="487" width="1" height="3"
+        fill="#FF69B4"/>
+  <rect id="menubar-focused-bottomright" x="399" y="487" width="1" height="3"
+        fill="#FF69B4"/>
 
-  <!-- ==================== TOOLBAR ==================== -->
-  <rect id="toolbar" x="0" y="990" width="400" height="36"
-        fill="url(#toolbar-grad)" stroke="#E0B0C4" stroke-width="0.5"/>
 
-  <!-- ==================== WINDOW ==================== -->
-  <rect id="window" x="400" y="0" width="280" height="200"
+  <!-- ==================================================================
+       MENUBAR ITEM (interior.element=menubaritem, frame.element=menubaritem)
+       ================================================================== -->
+
+  <rect id="menubaritem-normal" x="0" y="500" width="80" height="24"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-top" x="0" y="500" width="80" height="2"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-bottom" x="0" y="522" width="80" height="2"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-left" x="0" y="500" width="4" height="24"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-right" x="76" y="500" width="4" height="24"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-topleft" x="0" y="500" width="4" height="2"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-topright" x="76" y="500" width="4" height="2"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-bottomleft" x="0" y="522" width="4" height="2"
+        fill="#FFE0EC" opacity="0.01"/>
+  <rect id="menubaritem-normal-bottomright" x="76" y="522" width="4" height="2"
+        fill="#FFE0EC" opacity="0.01"/>
+
+  <rect id="menubaritem-focused" x="100" y="500" width="80" height="24" rx="4"
+        fill="#FFD0E0"/>
+  <rect id="menubaritem-focused-top" x="100" y="500" width="80" height="2"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="menubaritem-focused-bottom" x="100" y="522" width="80" height="2"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="menubaritem-focused-left" x="100" y="500" width="4" height="24"
+        fill="#FF69B4" opacity="0.2"/>
+  <rect id="menubaritem-focused-right" x="176" y="500" width="4" height="24"
+        fill="#FF69B4" opacity="0.2"/>
+  <rect id="menubaritem-focused-topleft" x="100" y="500" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+  <rect id="menubaritem-focused-topright" x="176" y="500" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+  <rect id="menubaritem-focused-bottomleft" x="100" y="522" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+  <rect id="menubaritem-focused-bottomright" x="176" y="522" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+
+  <rect id="menubaritem-pressed" x="200" y="500" width="80" height="24" rx="4"
+        fill="url(#btn-press)"/>
+  <rect id="menubaritem-pressed-top" x="200" y="500" width="80" height="2"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-bottom" x="200" y="522" width="80" height="2"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-left" x="200" y="500" width="4" height="24"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-right" x="276" y="500" width="4" height="24"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-topleft" x="200" y="500" width="4" height="2" rx="2"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-topright" x="276" y="500" width="4" height="2" rx="2"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-bottomleft" x="200" y="522" width="4" height="2" rx="2"
+        fill="#C05088"/>
+  <rect id="menubaritem-pressed-bottomright" x="276" y="522" width="4" height="2" rx="2"
+        fill="#C05088"/>
+
+  <rect id="menubaritem-toggled" x="300" y="500" width="80" height="24" rx="4"
+        fill="#FFD0E0"/>
+  <rect id="menubaritem-toggled-top" x="300" y="500" width="80" height="2"
+        fill="#FF69B4" opacity="0.5"/>
+  <rect id="menubaritem-toggled-bottom" x="300" y="522" width="80" height="2"
+        fill="#FF69B4" opacity="0.5"/>
+  <rect id="menubaritem-toggled-left" x="300" y="500" width="4" height="24"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="menubaritem-toggled-right" x="376" y="500" width="4" height="24"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="menubaritem-toggled-topleft" x="300" y="500" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+  <rect id="menubaritem-toggled-topright" x="376" y="500" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+  <rect id="menubaritem-toggled-bottomleft" x="300" y="522" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+  <rect id="menubaritem-toggled-bottomright" x="376" y="522" width="4" height="2" rx="2"
+        fill="#FF69B4"/>
+
+
+  <!-- ==================================================================
+       TABS (interior.element=tab, frame.element=tab)
+       ================================================================== -->
+
+  <rect id="tab-normal" x="0" y="550" width="100" height="30" rx="6"
+        fill="url(#tab-inactive-grad)"/>
+  <rect id="tab-normal-top" x="0" y="550" width="100" height="3"
+        fill="#D0A0B0"/>
+  <rect id="tab-normal-bottom" x="0" y="577" width="100" height="3"
+        fill="#D0A0B0"/>
+  <rect id="tab-normal-left" x="0" y="550" width="6" height="30"
+        fill="#D0A0B0" opacity="0.6"/>
+  <rect id="tab-normal-right" x="94" y="550" width="6" height="30"
+        fill="#D0A0B0" opacity="0.6"/>
+  <rect id="tab-normal-topleft" x="0" y="550" width="6" height="3" rx="3"
+        fill="#D0A0B0"/>
+  <rect id="tab-normal-topright" x="94" y="550" width="6" height="3" rx="3"
+        fill="#D0A0B0"/>
+  <rect id="tab-normal-bottomleft" x="0" y="577" width="6" height="3" rx="3"
+        fill="#D0A0B0"/>
+  <rect id="tab-normal-bottomright" x="94" y="577" width="6" height="3" rx="3"
+        fill="#D0A0B0"/>
+
+  <rect id="tab-focused" x="120" y="550" width="100" height="30" rx="6"
+        fill="url(#tab-active-grad)"/>
+  <rect id="tab-focused-top" x="120" y="550" width="100" height="3"
+        fill="#E0A8B8"/>
+  <rect id="tab-focused-bottom" x="120" y="577" width="100" height="3"
+        fill="#E0A8B8" opacity="0"/>
+  <rect id="tab-focused-left" x="120" y="550" width="6" height="30"
+        fill="#E0A8B8" opacity="0.6"/>
+  <rect id="tab-focused-right" x="214" y="550" width="6" height="30"
+        fill="#E0A8B8" opacity="0.6"/>
+  <rect id="tab-focused-topleft" x="120" y="550" width="6" height="3" rx="3"
+        fill="#E0A8B8"/>
+  <rect id="tab-focused-topright" x="214" y="550" width="6" height="3" rx="3"
+        fill="#E0A8B8"/>
+  <rect id="tab-focused-bottomleft" x="120" y="577" width="6" height="3"
+        fill="#E0A8B8" opacity="0"/>
+  <rect id="tab-focused-bottomright" x="214" y="577" width="6" height="3"
+        fill="#E0A8B8" opacity="0"/>
+
+  <rect id="tab-toggled" x="240" y="550" width="100" height="30" rx="6"
+        fill="url(#tab-active-grad)"/>
+  <rect id="tab-toggled-top" x="240" y="550" width="100" height="3"
+        fill="#FF69B4" opacity="0.5"/>
+  <rect id="tab-toggled-bottom" x="240" y="577" width="100" height="3"
+        fill="#FF69B4" opacity="0"/>
+  <rect id="tab-toggled-left" x="240" y="550" width="6" height="30"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="tab-toggled-right" x="334" y="550" width="6" height="30"
+        fill="#FF69B4" opacity="0.3"/>
+  <rect id="tab-toggled-topleft" x="240" y="550" width="6" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="tab-toggled-topright" x="334" y="550" width="6" height="3" rx="3"
+        fill="#FF69B4"/>
+  <rect id="tab-toggled-bottomleft" x="240" y="577" width="6" height="3"
+        fill="#FF69B4" opacity="0"/>
+  <rect id="tab-toggled-bottomright" x="334" y="577" width="6" height="3"
+        fill="#FF69B4" opacity="0"/>
+
+
+  <!-- ==================================================================
+       TAB FRAME (interior.element=tabframe, frame.element=tabframe)
+       ================================================================== -->
+
+  <rect id="tabframe-normal" x="0" y="590" width="340" height="60"
+        fill="#FFF0F5"/>
+  <rect id="tabframe-normal-top" x="0" y="590" width="340" height="3"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-bottom" x="0" y="647" width="340" height="3"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-left" x="0" y="590" width="3" height="60"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-right" x="337" y="590" width="3" height="60"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-topleft" x="0" y="590" width="3" height="3" rx="2"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-topright" x="337" y="590" width="3" height="3" rx="2"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-bottomleft" x="0" y="647" width="3" height="3" rx="2"
+        fill="#E0A8B8"/>
+  <rect id="tabframe-normal-bottomright" x="337" y="647" width="3" height="3" rx="2"
+        fill="#E0A8B8"/>
+
+
+  <!-- ==================================================================
+       SCROLLBAR (interior.element=scrollbar, frame.element=scrollbar)
+       Also used for ScrollbarSlider
+       ================================================================== -->
+
+  <rect id="scrollbar-normal" x="0" y="670" width="14" height="50" rx="7"
+        fill="url(#slider-grad)"/>
+  <rect id="scrollbar-normal-top" x="0" y="670" width="14" height="4" rx="3"
+        fill="#D0A0B8" opacity="0.6"/>
+  <rect id="scrollbar-normal-bottom" x="0" y="716" width="14" height="4" rx="3"
+        fill="#D0A0B8" opacity="0.6"/>
+  <rect id="scrollbar-normal-left" x="0" y="670" width="4" height="50"
+        fill="#D0A0B8" opacity="0.4"/>
+  <rect id="scrollbar-normal-right" x="10" y="670" width="4" height="50"
+        fill="#D0A0B8" opacity="0.4"/>
+  <rect id="scrollbar-normal-topleft" x="0" y="670" width="4" height="4" rx="3"
+        fill="#D0A0B8"/>
+  <rect id="scrollbar-normal-topright" x="10" y="670" width="4" height="4" rx="3"
+        fill="#D0A0B8"/>
+  <rect id="scrollbar-normal-bottomleft" x="0" y="716" width="4" height="4" rx="3"
+        fill="#D0A0B8"/>
+  <rect id="scrollbar-normal-bottomright" x="10" y="716" width="4" height="4" rx="3"
+        fill="#D0A0B8"/>
+
+  <rect id="scrollbar-focused" x="30" y="670" width="14" height="50" rx="7"
+        fill="url(#slider-focus-grad)"/>
+  <rect id="scrollbar-focused-top" x="30" y="670" width="14" height="4" rx="3"
+        fill="#C08898"/>
+  <rect id="scrollbar-focused-bottom" x="30" y="716" width="14" height="4" rx="3"
+        fill="#C08898"/>
+  <rect id="scrollbar-focused-left" x="30" y="670" width="4" height="50"
+        fill="#C08898" opacity="0.5"/>
+  <rect id="scrollbar-focused-right" x="40" y="670" width="4" height="50"
+        fill="#C08898" opacity="0.5"/>
+  <rect id="scrollbar-focused-topleft" x="30" y="670" width="4" height="4" rx="3"
+        fill="#C08898"/>
+  <rect id="scrollbar-focused-topright" x="40" y="670" width="4" height="4" rx="3"
+        fill="#C08898"/>
+  <rect id="scrollbar-focused-bottomleft" x="30" y="716" width="4" height="4" rx="3"
+        fill="#C08898"/>
+  <rect id="scrollbar-focused-bottomright" x="40" y="716" width="4" height="4" rx="3"
+        fill="#C08898"/>
+
+  <rect id="scrollbar-pressed" x="60" y="670" width="14" height="50" rx="7"
+        fill="#FFA0B8"/>
+  <rect id="scrollbar-pressed-top" x="60" y="670" width="14" height="4" rx="3"
+        fill="#B88098"/>
+  <rect id="scrollbar-pressed-bottom" x="60" y="716" width="14" height="4" rx="3"
+        fill="#B88098"/>
+  <rect id="scrollbar-pressed-left" x="60" y="670" width="4" height="50"
+        fill="#B88098" opacity="0.5"/>
+  <rect id="scrollbar-pressed-right" x="70" y="670" width="4" height="50"
+        fill="#B88098" opacity="0.5"/>
+  <rect id="scrollbar-pressed-topleft" x="60" y="670" width="4" height="4" rx="3"
+        fill="#B88098"/>
+  <rect id="scrollbar-pressed-topright" x="70" y="670" width="4" height="4" rx="3"
+        fill="#B88098"/>
+  <rect id="scrollbar-pressed-bottomleft" x="60" y="716" width="4" height="4" rx="3"
+        fill="#B88098"/>
+  <rect id="scrollbar-pressed-bottomright" x="70" y="716" width="4" height="4" rx="3"
+        fill="#B88098"/>
+
+
+  <!-- ==================================================================
+       SCROLLBAR GROOVE (interior.element=scrollbargroove, frame.element=scrollbargroove)
+       ================================================================== -->
+
+  <rect id="scrollbargroove-normal" x="100" y="670" width="14" height="120" rx="7"
+        fill="url(#groove-grad)"/>
+  <rect id="scrollbargroove-normal-top" x="100" y="670" width="14" height="1"
+        fill="#E0C0CC" opacity="0.3"/>
+  <rect id="scrollbargroove-normal-bottom" x="100" y="789" width="14" height="1"
+        fill="#E0C0CC" opacity="0.3"/>
+  <rect id="scrollbargroove-normal-left" x="100" y="670" width="1" height="120"
+        fill="#E0C0CC" opacity="0.3"/>
+  <rect id="scrollbargroove-normal-right" x="113" y="670" width="1" height="120"
+        fill="#E0C0CC" opacity="0.3"/>
+  <rect id="scrollbargroove-normal-topleft" x="100" y="670" width="1" height="1"
+        fill="#E0C0CC"/>
+  <rect id="scrollbargroove-normal-topright" x="113" y="670" width="1" height="1"
+        fill="#E0C0CC"/>
+  <rect id="scrollbargroove-normal-bottomleft" x="100" y="789" width="1" height="1"
+        fill="#E0C0CC"/>
+  <rect id="scrollbargroove-normal-bottomright" x="113" y="789" width="1" height="1"
+        fill="#E0C0CC"/>
+
+
+  <!-- ==================================================================
+       PROGRESS BAR (interior.element=progress, frame.element=progress)
+       ================================================================== -->
+
+  <rect id="progress-normal" x="0" y="810" width="300" height="20" rx="10"
+        fill="#F0D0DD"/>
+  <rect id="progress-normal-top" x="0" y="810" width="300" height="2"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-bottom" x="0" y="828" width="300" height="2"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-left" x="0" y="810" width="2" height="20"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-right" x="298" y="810" width="2" height="20"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-topleft" x="0" y="810" width="2" height="2" rx="2"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-topright" x="298" y="810" width="2" height="2" rx="2"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-bottomleft" x="0" y="828" width="2" height="2" rx="2"
+        fill="#E0B0C0"/>
+  <rect id="progress-normal-bottomright" x="298" y="828" width="2" height="2" rx="2"
+        fill="#E0B0C0"/>
+
+
+  <!-- ==================================================================
+       PROGRESS PATTERN (interior.element=progress-pattern, frame.element=progress-pattern)
+       ================================================================== -->
+
+  <rect id="progress-pattern-normal" x="0" y="850" width="200" height="20" rx="10"
+        fill="url(#progress-grad)"/>
+  <rect x="1" y="851" width="198" height="9" rx="9"
+        fill="#FFFFFF" opacity="0.3"/>
+  <rect id="progress-pattern-normal-top" x="0" y="850" width="200" height="2"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-bottom" x="0" y="868" width="200" height="2"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-left" x="0" y="850" width="2" height="20"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-right" x="198" y="850" width="2" height="20"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-topleft" x="0" y="850" width="2" height="2" rx="2"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-topright" x="198" y="850" width="2" height="2" rx="2"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-bottomleft" x="0" y="868" width="2" height="2" rx="2"
+        fill="#D06090"/>
+  <rect id="progress-pattern-normal-bottomright" x="198" y="868" width="2" height="2" rx="2"
+        fill="#D06090"/>
+
+
+  <!-- ==================================================================
+       TOOLTIP (interior.element=tooltip, frame.element=tooltip)
+       ================================================================== -->
+
+  <rect id="tooltip-normal" x="0" y="890" width="180" height="40" rx="6"
+        fill="url(#tooltip-bg)"/>
+  <rect id="tooltip-normal-top" x="0" y="890" width="180" height="4"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-bottom" x="0" y="926" width="180" height="4"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-left" x="0" y="890" width="4" height="40"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-right" x="176" y="890" width="4" height="40"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-topleft" x="0" y="890" width="4" height="4" rx="4"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-topright" x="176" y="890" width="4" height="4" rx="4"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-bottomleft" x="0" y="926" width="4" height="4" rx="4"
+        fill="#FFB6C1"/>
+  <rect id="tooltip-normal-bottomright" x="176" y="926" width="4" height="4" rx="4"
+        fill="#FFB6C1"/>
+
+
+  <!-- ==================================================================
+       GROUP BOX (interior.element=group, frame.element=group)
+       ================================================================== -->
+
+  <rect id="group-normal" x="0" y="950" width="250" height="80" rx="8"
+        fill="url(#group-bg)"/>
+  <rect id="group-normal-top" x="0" y="950" width="250" height="4"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-bottom" x="0" y="1026" width="250" height="4"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-left" x="0" y="950" width="4" height="80"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-right" x="246" y="950" width="4" height="80"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-topleft" x="0" y="950" width="4" height="4" rx="4"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-topright" x="246" y="950" width="4" height="4" rx="4"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-bottomleft" x="0" y="1026" width="4" height="4" rx="4"
+        fill="#E0B0C4"/>
+  <rect id="group-normal-bottomright" x="246" y="1026" width="4" height="4" rx="4"
+        fill="#E0B0C4"/>
+
+
+  <!-- ==================================================================
+       TOOLBAR (interior.element=toolbar, frame.element=toolbar)
+       ================================================================== -->
+
+  <rect id="toolbar-normal" x="0" y="1050" width="400" height="36"
+        fill="url(#toolbar-grad)"/>
+  <rect id="toolbar-normal-top" x="0" y="1050" width="400" height="1"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="toolbar-normal-bottom" x="0" y="1083" width="400" height="3"
+        fill="#E0B0C4" opacity="0.5"/>
+  <rect id="toolbar-normal-left" x="0" y="1050" width="1" height="36"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="toolbar-normal-right" x="399" y="1050" width="1" height="36"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="toolbar-normal-topleft" x="0" y="1050" width="1" height="1"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="toolbar-normal-topright" x="399" y="1050" width="1" height="1"
+        fill="#E0B0C4" opacity="0"/>
+  <rect id="toolbar-normal-bottomleft" x="0" y="1083" width="1" height="3"
+        fill="#E0B0C4"/>
+  <rect id="toolbar-normal-bottomright" x="399" y="1083" width="1" height="3"
+        fill="#E0B0C4"/>
+
+
+  <!-- ==================================================================
+       HEADER (interior.element=header, frame.element=header)
+       ================================================================== -->
+
+  <rect id="header-normal" x="0" y="1100" width="150" height="28"
+        fill="url(#header-grad)"/>
+  <rect id="header-normal-top" x="0" y="1100" width="150" height="2"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-bottom" x="0" y="1126" width="150" height="2"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-left" x="0" y="1100" width="2" height="28"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-right" x="148" y="1100" width="2" height="28"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-topleft" x="0" y="1100" width="2" height="2"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-topright" x="148" y="1100" width="2" height="2"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-bottomleft" x="0" y="1126" width="2" height="2"
+        fill="#D0A0B8"/>
+  <rect id="header-normal-bottomright" x="148" y="1126" width="2" height="2"
+        fill="#D0A0B8"/>
+
+  <rect id="header-focused" x="170" y="1100" width="150" height="28"
+        fill="#FFC0D4"/>
+  <rect id="header-focused-top" x="170" y="1100" width="150" height="2"
+        fill="#FF69B4"/>
+  <rect id="header-focused-bottom" x="170" y="1126" width="150" height="2"
+        fill="#FF69B4"/>
+  <rect id="header-focused-left" x="170" y="1100" width="2" height="28"
+        fill="#FF69B4"/>
+  <rect id="header-focused-right" x="318" y="1100" width="2" height="28"
+        fill="#FF69B4"/>
+  <rect id="header-focused-topleft" x="170" y="1100" width="2" height="2"
+        fill="#FF69B4"/>
+  <rect id="header-focused-topright" x="318" y="1100" width="2" height="2"
+        fill="#FF69B4"/>
+  <rect id="header-focused-bottomleft" x="170" y="1126" width="2" height="2"
+        fill="#FF69B4"/>
+  <rect id="header-focused-bottomright" x="318" y="1126" width="2" height="2"
+        fill="#FF69B4"/>
+
+
+  <!-- ==================================================================
+       WINDOW (interior.element=window)
+       ================================================================== -->
+
+  <rect id="window-normal" x="500" y="0" width="280" height="200"
         fill="url(#window-bg)"/>
 
-  <!-- ==================== RADIO & CHECK (indicative) ==================== -->
-  <!-- Radio normal -->
-  <circle id="radio-normal" cx="420" cy="250" r="9"
-          fill="#FFFFFF" stroke="#E0A8B8" stroke-width="1.5"/>
-  <!-- Radio checked -->
-  <circle id="radio-checked" cx="450" cy="250" r="9"
-          fill="#FFFFFF" stroke="#FF69B4" stroke-width="1.5"/>
-  <circle cx="450" cy="250" r="4.5" fill="#FF69B4"/>
 
-  <!-- Checkbox normal -->
-  <rect id="checkbox-normal" x="480" y="241" width="18" height="18" rx="3" ry="3"
+  <!-- ==================================================================
+       DOCK (interior.element=dock, frame.element=dock)
+       ================================================================== -->
+
+  <rect id="dock-normal" x="500" y="220" width="200" height="60"
+        fill="#FFF0F5"/>
+  <rect id="dock-normal-top" x="500" y="220" width="200" height="1"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-bottom" x="500" y="279" width="200" height="1"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-left" x="500" y="220" width="1" height="60"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-right" x="699" y="220" width="1" height="60"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-topleft" x="500" y="220" width="1" height="1"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-topright" x="699" y="220" width="1" height="1"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-bottomleft" x="500" y="279" width="1" height="1"
+        fill="#E0B0C4"/>
+  <rect id="dock-normal-bottomright" x="699" y="279" width="1" height="1"
+        fill="#E0B0C4"/>
+
+
+  <!-- ==================================================================
+       RADIO & CHECKBOX (indicator elements)
+       ================================================================== -->
+
+  <circle id="radio-normal" cx="520" cy="310" r="9"
+          fill="#FFFFFF" stroke="#E0A8B8" stroke-width="1.5"/>
+  <circle id="radio-checked" cx="550" cy="310" r="9"
+          fill="#FFFFFF" stroke="#FF69B4" stroke-width="1.5"/>
+  <circle cx="550" cy="310" r="4.5" fill="#FF69B4"/>
+
+  <rect id="checkbox-normal" x="580" y="301" width="18" height="18" rx="3"
         fill="#FFFFFF" stroke="#E0A8B8" stroke-width="1.5"/>
-  <!-- Checkbox checked -->
-  <rect id="checkbox-checked" x="510" y="241" width="18" height="18" rx="3" ry="3"
+  <rect id="checkbox-checked" x="610" y="301" width="18" height="18" rx="3"
         fill="#FF69B4" stroke="#D05090" stroke-width="1.5"/>
-  <!-- Checkmark -->
-  <polyline points="514,250 517,254 524,245" fill="none" stroke="#FFFFFF" stroke-width="2.5"
+  <polyline points="614,310 617,314 624,305" fill="none" stroke="#FFFFFF" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- ==================== SLIDER HANDLE ==================== -->
-  <circle id="sliderhandle" cx="420" cy="300" r="9"
+
+  <!-- ==================================================================
+       SLIDER HANDLE (interior.element=sliderhandle)
+       ================================================================== -->
+
+  <circle id="sliderhandle-normal" cx="520" cy="350" r="9"
           fill="url(#btn-normal)" stroke="#D0A0B8" stroke-width="1"/>
-  <circle cx="420" cy="300" r="5"
+  <circle cx="520" cy="350" r="5"
           fill="#FFFFFF" opacity="0.3"/>
 
-  <!-- ==================== DOCK ==================== -->
-  <rect id="dock" x="400" y="330" width="200" height="60"
-        fill="#FFF0F5" stroke="#E0B0C4" stroke-width="1"/>
+  <circle id="sliderhandle-focused" cx="550" cy="350" r="9"
+          fill="url(#btn-focus)" stroke="#FF69B4" stroke-width="1.5"/>
+  <circle cx="550" cy="350" r="5"
+          fill="#FFFFFF" opacity="0.35"/>
 
-  <!-- ==================== SPLITTER ==================== -->
-  <rect id="splitter" x="400" y="410" width="7" height="60"
+  <circle id="sliderhandle-pressed" cx="580" cy="350" r="9"
+          fill="url(#btn-press)" stroke="#C05088" stroke-width="1"/>
+
+
+  <!-- ==================================================================
+       SPLITTER (interior.element=splitter)
+       ================================================================== -->
+
+  <rect id="splitter-normal" x="500" y="380" width="7" height="60"
         fill="#F0D0DD"/>
-  <circle cx="403" cy="430" r="1.5" fill="#D0A0B8"/>
-  <circle cx="403" cy="438" r="1.5" fill="#D0A0B8"/>
-  <circle cx="403" cy="446" r="1.5" fill="#D0A0B8"/>
+  <circle cx="503" cy="400" r="1.5" fill="#D0A0B8"/>
+  <circle cx="503" cy="408" r="1.5" fill="#D0A0B8"/>
+  <circle cx="503" cy="416" r="1.5" fill="#D0A0B8"/>
 
-  <!-- ==================== SIZE GRIP ==================== -->
-  <g id="sizegrip" transform="translate(400,490)">
+
+  <!-- ==================================================================
+       SIZE GRIP (interior.element=sizegrip)
+       ================================================================== -->
+
+  <g id="sizegrip-normal" transform="translate(500,460)">
     <circle cx="12" cy="12" r="1.5" fill="#D0A0B8"/>
     <circle cx="8" cy="12" r="1.5" fill="#D0A0B8"/>
     <circle cx="12" cy="8" r="1.5" fill="#D0A0B8"/>
@@ -251,4 +992,13 @@
     <circle cx="8" cy="8" r="1.5" fill="#D0A0B8"/>
     <circle cx="12" cy="4" r="1.5" fill="#D0A0B8"/>
   </g>
+
+
+  <!-- ==================================================================
+       SLIDER GROOVE (interior.element=slider)
+       ================================================================== -->
+
+  <rect id="slider-normal" x="500" y="500" width="200" height="6" rx="3"
+        fill="#F0D0DD" stroke="#E0B0C0" stroke-width="0.5"/>
+
 </svg>
