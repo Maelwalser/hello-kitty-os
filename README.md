@@ -1,9 +1,12 @@
-# 🎀 Hello Kitty Y2K — Arch Linux KDE Plasma Rice
+# Hello Kitty Y2K — Arch Linux KDE Plasma Rice
 
 A **2000s-era Hello Kitty** themed desktop environment for KDE Plasma on Arch Linux.
 Pink, sparkly, bubbly, and unapologetically cute — just like 2003.
 
-## 📦 Componentsr
+<img width="1920" height="1080" alt="Screenshot_20260322_145705" src="https://github.com/user-attachments/assets/79f56a10-e422-4cbb-a1c7-9a0f451e1930" />
+
+
+## Components
 
 | Layer              | Technology         | Theme                    |
 |--------------------|--------------------|--------------------------|
